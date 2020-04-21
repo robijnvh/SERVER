@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<br />
+		<title>YEAH  | FT_SERVER | YEAH</title>
+	</head>
+		<p style= "text-align:center;">
+	<body>
+		<center id= "test1">WELCOME TO FT_SERVER</h1></center>
+		<br />
+		<br />
+		<center><a href="https://localhost/"id="test3">CLICK HERE >>> WORDPRESS <<<
+		 CLICK HERE</a></center>
+		<br />
+		<br />
+		<center><a href="https://localhost/phpmyadmin/"id="test4">CLICK HERE >>> PHPMYADMIN <<<
+		 CLICK HERE</a></center>
+		<br />
+		<br />
+		<center id="test2">PLAY SNAKE!! (use w/a/s/d keys to play)</center>
+		<center><canvas id="gc" width="400" height="400"></canvas></center>
+		<script>
+			src="practise.js";
+		
+			window.onload=function() {
+				canv=document.getElementById("gc");
+				ctx=canv.getContext("2d");
+				document.addEventListener("keydown", keyPush);
+				setInterval(game, 1000/10);
+			}
+		px=py=10;
+		gs=tc=20;
+		ax=ay=15;
+		xv=yv=0;
+		trail=[];
+		tail = 5;
+		function game () {
+			px+=xv;
+			py+=yv;
+			if (px < 0) {
+				px = tc - 1;
+			}
+			if (px > (tc - 1)) {
+				px = 0;
+			}
+			if (py < 0) {
+				py = tc - 1;
+			}
+			if (py > (tc - 1)) {
+				py = 0;
+			}
+			ctx.fillStyle="black";
+			ctx.fillRect(0,0,canv.width,canv.height);
+		
+			ctx.fillStyle="lime";
+			for(var i=0;i<trail.length;i++) {
+				ctx.fillRect(trail[i].x*gs,trail[i].y*gs,gs-2,gs-2);
+				if (trail[i].x==px && trail[i].y==py) {
+					tail = 5;
+				}
+			}
+			trail.push({x:px,y:py});
+			while(trail.length > tail) {
+				trail.shift();
+			}
+		
+			if (ax==px && ay==py) {
+				tail++;
+				ax=Math.floor(Math.random()*tc);
+				ay=Math.floor(Math.random()*tc);
+			}
+		
+			ctx.fillStyle="red";
+			ctx.fillRect(ax*gs,ay*gs,gs-2,gs-2);
+			ctx.font = "30px Arial";
+			ctx.fillText(` ${tail - 5} `, 10, 40);
+		}
+		function keyPush(evt) {
+			switch(evt.keyCode) {
+				case 65:
+					xv=-1;yv=0;
+					break;
+				case 87:            
+					xv=0;yv=-1;
+					break;
+				case 68:
+					xv=1;yv=0;
+					break;
+				case 83:
+					xv=0;yv=1;
+					break;
+			}
+		}
+		</script>
+		<style>
+			html{
+				background-color:#aeccee
+			}
+
+			#test1{
+				color:#ffffff solid;
+				text-decoration:none;
+				font-size:large;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				float:center;
+    			padding:15px 15px 15px ;
+    			margin:10px;
+				background-color:#1a69fc;
+				border: 2px #ffffff solid;
+			}
+
+			#test2{
+				color:#ffffff solid;
+				font-size:large;
+				text-align: center;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				text-decoration:none;
+				float:center;
+				padding:15px 400px 15px 400px;
+				margin:10px;
+				background-color:#1a69fc;
+				border: 2px #ffffff solid;
+			}
+
+			#test3{
+				color:#ffffff solid;
+				text-decoration:none;
+				background-color:#134bb3;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				border: 2px #ffffff solid;
+				font-size: 40px;
+			}
+
+			#test3:hover{
+				background-color: rgb(76, 133, 240);
+			}
+
+			#test4{
+				color:#ffffff solid;
+				text-decoration:none;
+				background-color:#134bb3;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				border: 2px #ffffff solid;
+				font-size: 40px;
+			}
+
+			#test4:hover{
+				background-color: rgb(76, 133, 240);
+			}
+
+		</style>
+	</body>
+</html>

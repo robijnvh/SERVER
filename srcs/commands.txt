@@ -1,0 +1,23 @@
+docker run hello-world 					| check if docker works
+docker ps								| overview images
+docker run -it debian bash				| run bash 
+docker run -d -p 8080:80 nginx			| -d = detachement (runs in background) | -p = port you want to map to
+docker stop [ID]						| stop container from running
+docker images							| check available images
+docker rmi [image-name] --force			| remove image
+docker build --tag [name] .				| make image with name
+docker container ls -a					| show list docker containers
+docker container rm [ID]				| remove docker container
+docker exec -it [mysql-name] bash -l	| connect to your mysql container to run commands
+docker rm $(docker ps -a -q)			| remove all stopped containers
+
+
+rm -rf ~/Library/Containers/com.docker.docker
+ln -s ~/goinfre/docker ~/Library/Containers/com.docker.docker
+
+
+docker build -t tim .
+docker run -it --rm --name tim -p 80:80 -p 443:443 tim
+docker ps -a
+
+docker exec -it tim bash
